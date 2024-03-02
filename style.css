@@ -1,0 +1,42 @@
+.button {
+    background-color: #fff3b0;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 150%;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+h3 {
+    color: #540b0e;
+}
+
+ul {
+    color: #540b0e;
+}
+
+.send-button {
+    background-color: #9e2a2b;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+}
