@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính chỉ số BMI</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6ec4, #7873f5, #73fa79, #f5ec42, #ff6ec4);
+            background-size: 500% 500%;
+            animation: holographicBg 10s ease infinite;
+        }
+
+        @keyframes holographicBg {
+            0% {
+                background-position: 0% 0%;
+            }
+            100% {
+                background-position: 100% 100%;
+            }
+        }
+
+        #bmiCalculator {
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        #bmiCalculator input[type="number"],
+        #bmiCalculator select {
+            width: 100px;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        #bmiCalculator button {
+            padding: 10px 80px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #b388eb;
+            color: white;
+            text-align: center;
+        }
+
+        #bmiResult {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="bmiCalculator">
+        <div>
+            <h2>Tính chỉ số BMI</h2>
+        </div>
+        <label for="weight">Cân nặng (kg):</label>
+        <input type="number" id="weight" required><br>
+
+        <label for="height">Chiều cao (cm):</label>
+        <input type="number" id="height" required><br>
+
+        <label for="age">Tuổi:</label>
+        <select id="age">
+            <option value="child">Trẻ em</option>
+            <option value="middle_age">Trung niên</option>
+            <option value="elderly">Già và lớn tuổi</option>
+        </select><br>
+
+        <button onclick="calculateBMI()">Tính BMI</button>
+        <h3>KẾT QUẢ</h3>
+        <div id="bmiResult" style="display: none;"></div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            var weight = parseFloat(document.getElementById("weight").value);
+            var height = parseFloat(document.getElementById("height").value);
+            var age = document.getElementById("age").value;
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0) {
+                document.getElementById("bmiResult").innerText = "Vui lòng nhập giá trị cân nặng và chiều cao hợp lệ.";
+                return;
+            }
+
+            height /= 100; // Chuyển đổi chiều cao từ cm sang m
+
+            var bmi = weight / (height * height);
+
+            var bmiCategory = "";
+
+            if (age === "child") {
+                if (bmi < 18.5) {
+                    bmiCategory = "Thiếu cân";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    bmiCategory = "Cân đối";
+                } else if (bmi >= 24.9 && bmi < 29.9) {
+                    bmiCategory = "Thừa cân";
+                } else {
+                    bmiCategory = "Béo phì";
+                }
+            } else if (age === "middle_age") {
+                if (bmi < 18.5) {
+                    bmiCategory = "Thiếu cân";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    bmiCategory = "Cân đối";
+                } else if (bmi >= 24.9 && bmi < 29.9) {
+                    bmiCategory = "Thừa cân";
+                } else {
+                    bmiCategory = "Béo phì";
+                }
+                bmiCategory = "Khám định kì";
+            } else if (age === "elderly") {
+                if (bmi < 18.5) {
+                    bmiCategory = "Thiếu cân";
+                } else if (bmi >= 18.5 && bmi < 24.9) {
+                    bmiCategory = "Cân đối";
+                } else if (bmi >= 24.9 && bmi < 29.9) {
+                    bmiCategory = "Thừa cân";
+                } else {
+                    bmiCategory = "Béo phì";
+                }
+                bmiCategory = "Hạn chế ăn mỡ động vật";
+            }
+
+            document.getElementById("bmiResult").innerText = "Chỉ số BMI của bạn là " + bmi.toFixed(2) +" " + "Khuyến nghị: " + bmiCategory + ".";
+            document.getElementById("bmiResult").style.display = "block";
+        }
+    </script>
+</body>
+</html>
